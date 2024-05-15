@@ -31,6 +31,7 @@ class Graph(FigureCanvasQTAgg):
     def plotWave(self, filename):
         self.axes.clear()
         data, sr = librosa.load(filename)
+        # librosa.display.waveplot(data, sr=sr, ax=self.axes)
         librosa.display.waveplot(data, sr=sr, ax=self.axes)
         f = filename.split("/")
         self.axes.set_title(f[len(f) - 1])
