@@ -45,11 +45,7 @@ def network_train():
     model.compile(optimizer='adam',
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
-    # INIT_LR = 0.0001
-    # EPOCHS = 5
-    # OPTIMIZER = SGD(lr=INIT_LR)
-    # model.compile(loss="categorical_crossentropy",
-    #           optimizer=OPTIMIZER, metrics=["accuracy"])
+
     early_stopping_callback = EarlyStopping(monitor='val_accuracy',
                                             patience=10)
     checkpoint_filepath = 'best_model_Dense.h5'
@@ -62,7 +58,7 @@ def network_train():
     history = model.fit(X_train,
                         y_train,
                         batch_size=32,
-                        epochs=100,
+                        epochs=50,
                         validation_data=(X_test, y_test),
                         callbacks=[model_checkpoint_callback,
                                    early_stopping_callback])
