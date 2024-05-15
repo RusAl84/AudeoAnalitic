@@ -8,11 +8,17 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 
 import seaborn as sns
 
-from keras.utils import plot_model
+# from keras.utils import plot_model
+from keras.utils.vis_utils import plot_model
+
 from keras import models
 from keras import layers
 from keras.callbacks import ModelCheckpoint, EarlyStopping
+# from tensorflow.keras.utils import to_categorical
+# from keras.utils import to_categorical
 from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.optimizers import SGD
+
 
 def network_train():
     X = np.load('features.npy')
@@ -34,11 +40,16 @@ def network_train():
 
     model.add(layers.Dense(10, activation='softmax'))
 
-    plot_model(model, show_shapes=True, show_layer_names=True, to_file='model.png')
+    # plot_model(model, show_shapes=True, show_layer_names=True, to_file='model.png')
 
     model.compile(optimizer='adam',
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
+    # INIT_LR = 0.0001
+    # EPOCHS = 5
+    # OPTIMIZER = SGD(lr=INIT_LR)
+    # model.compile(loss="categorical_crossentropy",
+    #           optimizer=OPTIMIZER, metrics=["accuracy"])
     early_stopping_callback = EarlyStopping(monitor='val_accuracy',
                                             patience=10)
     checkpoint_filepath = 'best_model_Dense.h5'

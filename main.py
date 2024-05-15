@@ -32,7 +32,7 @@ class Graph(FigureCanvasQTAgg):
         self.axes.clear()
         data, sr = librosa.load(filename)
         # librosa.display.waveplot(data, sr=sr, ax=self.axes)
-        librosa.display.waveplot(data, sr=sr, ax=self.axes)
+        librosa.display.waveshow(data, sr=sr, ax=self.axes)
         f = filename.split("/")
         self.axes.set_title(f[len(f) - 1])
         self.draw()
@@ -79,7 +79,7 @@ class InitWindow(QMainWindow):
 
     def btn_load_clicked(self):
         self.fname = QFileDialog.getOpenFileName(self, 'Open File',
-                                                 'c:\\', 'Wav files (*.wav)')[0]
+                                                 'd:\\', 'Wav files (*.wav)')[0]
         if self.fname != "":
             self.graphic.plotWave(self.fname)
             self.url = QUrl.fromLocalFile(self.fname)
