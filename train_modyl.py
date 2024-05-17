@@ -58,7 +58,7 @@ def network_train():
     history = model.fit(X_train,
                         y_train,
                         batch_size=32,
-                        epochs=50,
+                        epochs=100,
                         validation_data=(X_test, y_test),
                         callbacks=[model_checkpoint_callback,
                                    early_stopping_callback])
